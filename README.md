@@ -10,6 +10,7 @@ Requirements
 
 * `php`
 * `composer`
+* `git`, `svn`, or whatever SCM system you need for your deploy.
 
 This cookbook is not responsible for satisfying these requirements. You will have to provision your machine with these through your platform's dependency manager (`apt`, `yum`, etc), or through other cookbooks.
 
@@ -62,7 +63,7 @@ These are the things that happen during the make process:
 
 ```ruby
 drupal_make "/path/to/project" do
-    repo 'git@github.com:your_organization/your_drupal_project.git
+    repo 'git@github.com:your_organization/your_drupal_project.git'
     git_ssh_wrapper '/tmp/ssh-wrapper.sh'
     revision 'v2.0'
     user node[:drupal_make][:drush][:user]
