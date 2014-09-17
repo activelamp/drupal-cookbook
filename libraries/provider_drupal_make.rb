@@ -20,7 +20,8 @@ class Chef
           executor.user(@new_resource.user)
           executor.group(@new_resource.group)
           executor.run_action(:run)
-          {'modules/custom' => @new_resource.modules_dir, 'themes/custom' => @new_resource.themes_dir}.each do |from, to|
+          { @new_resource.build_modules_dir => @new_resource.modules_dir, @new_resource.build_themes_dir => @new_resource.themes_dir }.each do |from, to|
+            next if to.nil?
             link = Chef::Resource::Link.new("#{ release_path }/#{ @new_resource.build_to }/#{ from }", @run_context)
             link.to("#{ release_path }/#{ to }")
             link.owner(@new_resource.user)
