@@ -68,6 +68,8 @@ drupal_make "/path/to/project" do
     revision 'v2.0'
     user node[:drupal_make][:drush][:user]
     group node[:drupal_make][:drush][:group]
+    themes_dir 'themes'
+    modules_dir 'modules'
     action :deploy
 end
 ```
@@ -80,8 +82,25 @@ Option | Default | Description
 -------|---------|------------
 __make_file__ | `"drupal.make"` | The path to the make file relative to your project repository root.
 __build_to__ | `"_build"` | Where the Drupal site to be built, relative to your project repository root.
-__themes_dir__ | `"themes"` | Where your custom themes are relative to your project repository root. Specify `nil` if none.
-__modules_dir__ | `"modules"` | Where your custom themes are relative to your project repository root. Specify `nil` if none.
+__themes_dir__ | `nil` | Where your custom themes are relative to your project repository root. Nothing is done when `nil`.
+__modules_dir__ | `nil` | Where your custom themes are relative to your project repository root. Nothing is done when `nil`.
+
+#### Configuring where themes and modules are symlinked to
+
+By default, modules are symlinked into `sites/all/modules/custom`, and themes into `sites/all/themes/custom`. If you wish to put them somewhere else, just specify a second argument to `modules_dir` and/or `themes_dir`:
+
+```ruby
+drupal_make "/path/to/project" do
+    repo 'git@github.com:your_organization/your_drupal_project.git'
+    git_ssh_wrapper '/tmp/ssh-wrapper.sh'
+    revision 'v2.0'
+    user node[:drupal_make][:drush][:user]
+    group node[:drupal_make][:drush][:group]
+    action :deploy
+    themes_dir 'themes', 'themes/custom'
+    modules_dir 'modules', 'modules/custom'
+end
+```
 
 License and Authors
 ===================
