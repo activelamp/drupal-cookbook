@@ -6,7 +6,7 @@ class Chef
 
       def initialize(name, run_context=nil)
         super
-        @name = :drupal_make
+        @resource_name = :drupal_make
         @make_file = 'drupal.make'
         @themes_dir = 'themes'
         @modules_dir = 'modules'
