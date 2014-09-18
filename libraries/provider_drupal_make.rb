@@ -4,10 +4,10 @@ class Chef
   class Provider
     class DrupalMake < Chef::Provider::Deploy
       def migrate
-        super
         callback(:before_make, @new_resource.before_make)
         make
         callback(:after_make, @new_resource.after_make)
+        super
       end
       def make
         converge_by("Making Drupal site #{ release_path }") do
