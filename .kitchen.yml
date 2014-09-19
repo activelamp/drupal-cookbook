@@ -12,5 +12,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[drupal_make::default]
+      - recipe[activelamp_drupal::default]
     attributes:

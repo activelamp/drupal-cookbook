@@ -21,12 +21,12 @@ This cookbook is not responsible for satisfying these requirements. You will hav
 Recipes
 =====================
 
-### `drupal_make::drush`
+### `activelamp_drupal::drush`
 
 Installs `Drush` on your node:
 
 ```ruby
-include_recipe 'drupal_make::drush'
+include_recipe 'activelamp_drupal::drush'
 ```
 
 Attributes
@@ -34,11 +34,11 @@ Attributes
 
 Option | Default | Description
 -------|---------|------------
-__[:drupal_make][:drush][:version]__ | `"7.x"` | The version of `Drush` to install.
-__[:drupal_make][:drush][:user]__ | `"root"` | The user responsible for the commands. The `drush` command will be registered under this user.
-__[:drupal_make][:drush][:group]__ | `"root"` | The group responsible for the commands.
-__[:drupal_make][:drush][:install_path]__ | `"/usr/local/bin/drush"` | Where the `drush` executable will be linked to.
-__[:drupal_make][:drush][:composer_command]__ | `"composer"` | The `Composer` command that will work in your node. The default value will assume that `composer` is available globally. However you can specify something like `"php /path/to/composer.phar"` if the executable is somewhere that cannot be resolved by the `$PATH` environment variable.
+__[:activelamp_drupal][:drush][:version]__ | `"7.x"` | The version of `Drush` to install.
+__[:activelamp_drupal][:drush][:user]__ | `"root"` | The user responsible for the commands. The `drush` command will be registered under this user.
+__[:activelamp_drupal][:drush][:group]__ | `"root"` | The group responsible for the commands.
+__[:activelamp_drupal][:drush][:install_path]__ | `"/usr/local/bin/drush"` | Where the `drush` executable will be linked to.
+__[:activelamp_drupal][:drush][:composer_command]__ | `"composer"` | The `Composer` command that will work in your node. The default value will assume that `composer` is available globally. However you can specify something like `"php /path/to/composer.phar"` if the executable is somewhere that cannot be resolved by the `$PATH` environment variable.
 
 
 Resources / Providers
@@ -66,8 +66,8 @@ drupal_make "/path/to/project" do
     repo 'git@github.com:your_organization/your_drupal_project.git'
     git_ssh_wrapper '/tmp/ssh-wrapper.sh'
     revision 'v2.0'
-    user node[:drupal_make][:drush][:user]
-    group node[:drupal_make][:drush][:group]
+    user node[:activelamp_drupal][:drush][:user]
+    group node[:activelamp_drupal][:drush][:group]
     themes_dir 'themes'
     modules_dir 'modules'
     action :deploy
@@ -94,8 +94,8 @@ drupal_make "/path/to/project" do
     repo 'git@github.com:your_organization/your_drupal_project.git'
     git_ssh_wrapper '/tmp/ssh-wrapper.sh'
     revision 'v2.0'
-    user node[:drupal_make][:drush][:user]
-    group node[:drupal_make][:drush][:group]
+    user node[:activelamp_drupal][:drush][:user]
+    group node[:activelamp_drupal][:drush][:group]
     action :deploy
     themes_dir 'themes', 'themes/custom'
     modules_dir 'modules', 'modules/custom'
